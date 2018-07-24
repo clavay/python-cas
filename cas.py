@@ -154,12 +154,12 @@ class CASClientV2(CASClientBase):
         self.proxy_callback = proxy_callback
         super(CASClientV2, self).__init__(*args, **kwargs)
 
-    def verify_ticket(self, ticket):
+    def verify_ticket(self, ticket, **kwargs):
         """Verifies CAS 2.0+/3.0+ XML-based authentication ticket and returns extended attributes"""
-        response = self.get_verification_response(ticket)
+        response = self.get_verification_response(ticket, **kwargs)
         return self.verify_response(response)
 
-    def get_verification_response(self, ticket):
+    def get_verification_response(self, ticket, **kwargs):
         params = {
             'ticket': ticket,
             'service': self.service_url
@@ -167,7 +167,7 @@ class CASClientV2(CASClientBase):
         if self.proxy_callback:
             params.update({'pgtUrl': self.proxy_callback})
         base_url = urllib_parse.urljoin(self.server_url, self.url_suffix)
-        page = requests.get(base_url, params=params)
+        page = requests.get(base_url, params=params, **kwargs)
         try:
             return page.content
         finally:
