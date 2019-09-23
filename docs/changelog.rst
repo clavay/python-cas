@@ -30,3 +30,15 @@ here. For additional detail, read the complete `commit history`_.
 .. _commit history: https://github.com/python-cas/python-cas/commits
 .. _django-cas-ng: https://github.com/mingchen/django-cas-ng
 
+
+**python-cas 1.3.0** ``[2018-08-02]``
+
+* Improve CASv2 XML parsing when response is not standard
+* Update URL suffix for CAS v3 serviceValidate
+* Add method verify_logout_request
+* Add lxml to setup.py
+
+
+**python-cas 1.4.0** ``[2018-10-09]``
+
+* Add kwarg `verify_ssl_certificate` to bypass SSL certificate validation

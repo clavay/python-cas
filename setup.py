@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
 from __future__ import absolute_import
+
 import codecs
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+
+from setuptools import setup
 
 with codecs.open('README.rst', encoding='utf-8') as f:
     readme = f.read()
@@ -20,8 +19,17 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Internet :: WWW/HTTP',
     ],
+    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*",
     install_requires=[
         'six',
         'requests',
@@ -32,9 +40,8 @@ setup(
     license='MIT',
     long_description=readme,
     name='python-cas',
-    packages=['.'],
+    py_modules=['cas'],
     url='https://github.com/python-cas/python-cas',
     download_url ='https://github.com/python-cas/python-cas/releases',
-    version='1.2.0',
+    version='1.4.0',
 )
-

@@ -1,20 +1,27 @@
 language: python
-python:
-  - "2.7"
-env:
-  global:
-    - PIP_DOWNLOAD_CACHE=$HOME/.pip_cache
-  matrix:
-    - TOX_ENV=py27
-    - TOX_ENV=py34
-    - TOX_ENV=flake8
-cache:
-  directories:
-    - $HOME/.pip-cache/
+cache: pip
+
+matrix:
+  include:
+    - python: "2.7"
+      env: TOXENV=py27
+    - python: "3.4"
+      env: TOXENV=py34
+    - python: "3.5"
+      env: TOXENV=py35
+    - python: "3.6"
+      env: TOXENV=py36
+    - python: "3.7"
+      env: TOXENV=py37
+      dist: xenial
+      sudo: required
+    - env: TOXENV=flake8
+    - env: TOXENV=isort
+
 install:
   - "travis_retry pip install setuptools --upgrade"
   - "pip install tox"
 script:
-  - tox -e $TOX_ENV
+  - tox
 after_script:
-  - cat .tox/$TOX_ENV/log/*.log
+  - cat .tox/$TOXENV/log/*.log
